@@ -1,0 +1,38 @@
+
+<html lang="en">
+<head >
+  <div id="myHead"></div>
+  <link th:href="@{/css/style.css}" type="text/css" rel="stylesheet">
+</head>
+<header id="myHeader"></header>
+<body>
+<div class="kontainer">
+  <div class="row ">
+    <div class="col-md-1 "></div>
+    <div class="col-md-11 id = cz">
+      Заказы
+      <br>
+      <hr>
+    </div>
+  </div>
+  <div class="row row-cols-1 id = bla">
+    <div th:each="order : ${orders}">
+    <h4 th:text="'Заказ № ' + ${order.getNumber()}" style="color: rgba(33,4,68,0.84);"></h4>
+    <img th:src="'/img/' + ${order.getProduct().imageList[0].getFileName()}" width="300px">
+    <p th:text="'Наименование: ' + ${order.getProduct().getTitle()}"></p>
+    <p th:text="'Количество: ' + ${order.getCount()}"></p>
+    <p th:text="'Цена: ' + ${order.getPrice()}"></p>
+    <p th:text="'Дата заказа: ' + ${#temporals.format(order.getDateTime(), 'dd-MMM-yyyy')}"></p>
+    <p th:text="'Статус: ' + ${order.getStatus()}">
+      <hr>
+      <div style="border-bottom: 1mm ridge rgba(213, 210, 217, 0.49);">   </div>
+  </div>
+  </div>
+</body>
+<!--///////////////////////////////////////////-->
+<footer id="myfooter"></footer>
+<script th:src="@{/js/index_user.js}" ></script>
+</html>
+
+
+

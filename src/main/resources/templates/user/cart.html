@@ -1,0 +1,63 @@
+
+<html lang="en">
+<head >
+  <div id="myHead"></div>
+  <link th:href="@{/css/style.css}" type="text/css" rel="stylesheet">
+</head>
+<header id="myHeader"></header>
+
+<!--///////////основной блок//////////////////-->
+<body>
+<div class="kontainer">
+  <div class="row ">
+    <div class="col-md-1 "></div>
+      <div class="col-md-10 id = cz">Корзина товаров  <br>
+     </div>
+  </div>
+</div>
+<div class="kontainer">
+  <div class="row " style="height: calc(100% - 470px)">
+    <div class="col-md-1 ">
+    </div>
+    <div class="col-md-10 ">
+       <div class="kontainer">
+         <div class="row row-cols-4 id = bl2">
+             <div th:each="product : ${cart_product} ">
+               <div class="kontainer id= form-b">
+                   <div class="row row-cols-1  id = bl2_R">
+                      <img th:src="'/img/' + ${product.imageList[0].getFileName()}" width="200px">
+                      <div class= "text_v">
+                          <br>
+                       <a  th:href="@{/product/info/{id}(id=${product.getId()})}" th:text="${product.getTitle()}"></a>
+                      </div>
+                    </div>
+                   <div class="row row-cols-2 id = bl2_bottom">
+                     <p th:text="'Цена: ' + ${product.getPrice()}"></p>
+                     <a class="btn btn-primary btn-sm" th:href="@{/cart/delete/{id}(id=${product.getId()})}">Удалить</a>
+                   </div>
+                 <br>
+               </div>
+             </div>
+         </div>
+       </div>
+    </div>
+    <div class="col-md-1 ">
+    </div>
+  </div>
+  <div class="row ">
+      <div class="col-md-1 "></div>
+      <div class="col-md-10 id = v_cart_r">
+          <p th:text="'Итоговая цена: ' + ${price}"></p>
+          <a class="btn btn-primary btn-lm" href="/order/create">Оформить заказ</a>
+      </div>
+      <div class="col-md-1 "></div>
+  </div>
+</div>
+<br>
+<br>
+</body>
+<!--///////////////////////////////////////////-->
+<footer id="myfooter"></footer>
+<script th:src="@{/js/index.js}" ></script>
+</html>
+

@@ -1,25 +1,44 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-  <meta charset="UTF-8">
-  <title>Регистрация</title>
+
+<html lang="en">
+<head >
+  <div id="myHead"></div>
+  <link th:href="@{/css/style.css}" type="text/css" rel="stylesheet">
 </head>
+<header id="myHeader"></header>
+
 <body>
-<h3>Регистрация</h3>
-<form method="post" th:action="@{/authentication/registration}" th:object="${person}">
-  <label for="username">Введите логин: </label><br>
-  <input type="text" th:field="*{login}" placeholder="Введите ваш логин" name="username" id="username">
-  <div style="color: red" th:if="${#fields.hasErrors('login')}" th:errors="*{login}"></div>
-  <br>
-  <label for="password">Введите пароль: </label>
-  <br>
-  <input type="password" th:field="*{password}" placeholder="Введите ваш пароль" name="password" id="password">
-  <div style="color: red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
-  <br>
-  <input type="submit" value="Зарегистрироваться">
-  <div th:if="${param.error}" style="color: red">
-    Неправильный логни или пароль
+<div class="container" style="height: calc(100% - 300px)">
+  <div class="row">
+
+    <div class="col-md-offset-3 col-md-6">
+      <form class="form-horizontal" method="post" th:action="@{/authentication/registration}" th:object="${person}">
+        <span class="heading">РЕГИСТРАЦИЯ</span>
+        <div class="form-group">
+          <input  class="form-control"  type="text" th:field="*{login}" placeholder="Введите ваш логин" name="username" id="username">
+          <div style="color: red" th:if="${#fields.hasErrors('login')}" th:errors="*{login}"></div>
+          <i class="fa fa-user"></i>
+        </div>
+        <div class="form-group help">
+          <input  class="form-control"   type="password" th:field="*{password}" placeholder="Введите ваш пароль" name="password" id="password">
+          <div style="color: red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+          <i class="fa fa-lock"></i>
+          <a href="#" class="fa fa-question-circle"></a>
+        </div>
+        <div class="form-group">
+          <a href="/authentication/login">Перейти к авторизации</a>
+          <button type="submit"  value="Зарегистрироваться" class="btn btn-default">Зарегистрироваться</button>
+          <div th:if="${param.error}" style="color: red">
+            Неправильный логин или пароль
+          </div>
+        </div>
+      </form>
+    </div>
   </div>
-</form>
+</div>
 </body>
+<!--///////////////////////////////////////////-->
+<footer id="myfooter"></footer>
+<script th:src="@{/js/index.js}" ></script>
 </html>
+
+

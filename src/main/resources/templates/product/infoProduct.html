@@ -1,0 +1,57 @@
+
+<html lang="en">
+<head >
+  <div id="myHead"></div>
+  <link th:href="@{/css/style.css}" type="text/css" rel="stylesheet">
+</head>
+<header id="myHeader"></header>
+
+<body>
+<br>
+<div class="kontainer">
+  <div class="row id =form_row" style="height: calc(100% - 360px)">
+    <br>
+    <div class="col-md-1 ">
+    </div>
+    <div class="col-md-4 ">
+      <img th:src="'/img/' + ${product.imageList[0].getFileName()}" width="400px">
+    </div>
+    <div class="col-md-6 id = form_edit">
+      <p th:text=" ${product.getTitle()}" style="font-weight:bold; font-size: 20px;"></p>
+      <br>
+      <p th:text="'Описание: ' + ${product.getDescription()}"></p>
+      <p th:text="'Цена: ' + ${product.getPrice()}"></p>
+      <p th:text="'Склад: ' + ${product.getWarehouse()}"></p>
+      <p th:text="'Продавец: ' + ${product.getSeller()}"></p>
+      <p th:text="'Категория: ' + ${product.getCategory().getName()}"></p>
+      <div class="kontainer">
+        <div class="row row-cols-5">
+          <div th:each="img : ${product.getImageList()}">
+            <img th:src="'/img/' + ${img.getFileName()}" width="100px">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-1 ">
+    </div>
+  </div>
+</div>
+<br>
+<br>
+
+
+<!--
+<p th:text="'Наименование: ' + ${product.getTitle()}"></p>
+<p th:text="'Описание: ' + ${product.getDescription()}"></p>
+<p th:text="'Цена: ' + ${product.getPrice()}"></p>
+<p th:text="'Склад: ' + ${product.getWarehouse()}"></p>
+<p th:text="'Продавец: ' + ${product.getSeller()}"></p>
+<p th:text="'Категория: ' + ${product.getCategory().getName()}"></p>
+<div th:each="img : ${product.getImageList()}">
+  <img th:src="'/img/' + ${img.getFileName()}" width="300px">
+</div>-->
+</body>
+<!--///////////////////////////////////////////-->
+<footer id="myfooter"></footer>
+<script th:src="@{/js/index.js}" ></script>
+</html>

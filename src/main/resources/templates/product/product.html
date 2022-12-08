@@ -1,0 +1,136 @@
+
+<html lang="en">
+<head >
+    <div id="myHead"></div>
+    <link th:href="@{/css/style.css}" type="text/css" rel="stylesheet">
+</head>
+<header id="myHeader"></header>
+
+  <!--///////////основной блок//////////////////-->
+   <body>
+   <div class="kontainer">
+       <div class="row id = bl">
+           <div class="col-md-2 id = bl_l">
+               <!--///////////форма отбора по категориям//////////////////-->
+               <div class="kontainer ">
+                   <br>
+                   <div class="row id = bl_l_T">
+                       <form  th:method="POST" th:action="@{/product/search_contact(contact = 'toys')}">
+                           <input class="col-sm-3 " type="image" src="/css/шарики.png"  >Игрушки из стекла</form>
+                       <br>
+                       <form th:method="POST" th:action="@{/product/search_contact(contact = 'toys1')}">
+                           <input class="col-sm-3 " type="image" src="/css/шарик.png"  >Игрушки штучные</form>
+                       <br>
+                       <form th:method="POST" th:action="@{/product/search_contact(contact = 'yelki')}">
+                           <input  class="col-sm-3 " type="image" src="/css/елка.png"  >Елки</form>
+                       <br>
+                       <form id = "bl_l_T" th:method="POST" th:action="@{/product/search_contact(contact = 'other')}">
+                           <input  class="col-sm-3 " type="image" src="/css/подарок.png" >Разное </form>
+                       <br>
+                       <br>
+                       <br>
+                       <br>
+                   </div >
+                   <!--///////////форма выбора и сортировок//////////////////-->
+
+
+                   <div class="row id = bl_l_T">
+                       <form th:method="POST" th:action="@{/product/search}">
+                           <fieldset>
+                               <label><h4>Групповая сортировка: </h4></label>
+                               <br>
+                               <label for="search">Поиск по наименованию:</label>
+                               <input name="search" id="search" style="width: 100%;" th:value="*{value_search}">
+                               </br></br>
+                               <label>Цена, ₽</label>
+                               <br>
+                               <label for="ot">От</label>
+                               <input type="text" name="ot" style="width: 40%;" id="ot" th:value="*{value_price_ot}">
+                               <label for="do">До</label>
+                               <input type="text" name="do" style="width: 40%;" id="do" th:value="*{value_price_do}">
+                               <br>
+                               <br>
+                               <div>
+                                   <label  for="ascending_price">Цена по возрастанию</label>
+                                   <input  type="radio" id="ascending_price" name="price" value="sorted_by_ascending_price">
+                                   <br>
+                                   <label  for="descending_price">Цена по убыванию</label>
+                                   <input  type="radio" id="descending_price" name="price" value="sorted_by_descending_price">
+                                   <br>
+                                   <br>
+                                   <p>Категория товаров: </p>
+                                   <label for="toys">Шары</label>
+                                   <input type="radio" id="toys" name="contact" value="toys" checked>
+                                   <br>
+                                   <label for="yelki">Елки</label>
+                                   <input type="radio" id="yelki" name="contact" value="yelki">
+                                   <br>
+                                   <label for="other">Прочее</label>
+                                   <input type="radio" id="other" name="contact" value="other">
+                                   <br>
+                                   <br>
+                                   <input type="submit" class="btn btn-primary" value="Найти">
+                               </div>
+                           </fieldset>
+                       </form>
+                   </div >
+               </div >
+           </div>
+           <!-- <div class="col-md-1 id = bl_Z">
+            </div>-->
+           <div class="col-md-9 id = bl_R">
+               <!--///////////основной блок по товарам отборы//////////////////-->
+
+               <div class="kontainer">
+                   <div class="row row-cols-3 id = bl2">
+                       <div th:each="product : ${search_product} ">
+                           <div class="kontainer id= form-b">
+                               <div class="row row-cols-1  id = bl2_R">
+                                   <img th:src="'/img/' + ${product.imageList[0].getFileName()}" width="300px">
+                                   <div class= "text_v">
+                                       <br>
+                                       <a  th:href="@{/product/info/{id}(id=${product.getId()})}" th:text="${product.getTitle()}"></a>
+                                   </div>
+                               </div>
+                               <div class="row row-cols-2 id = bl2_bottom">
+                                   <p th:text="'Цена: ' + ${product.getPrice()}"></p>
+                               </div>
+                               <br>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+               <!--///////////основной блок по товарам//////////////////-->
+               <div class="kontainer">
+                   <div class="row id = cz">
+                       <div class="col-md-12 ">Перечень товаров  <br></div>
+                   </div>
+               </div>
+               <div class="kontainer">
+                   <div class="row row-cols-3 id = bl2">
+                       <div th:each="product : ${products} ">
+                           <div class="kontainer id= form-b">
+                               <div class="row row-cols-1  id = bl2_R">
+                                   <img th:src="'/img/' + ${product.imageList[0].getFileName()}" width="300px">
+                                   <div class= "text_v">
+                                       <br>
+                                       <a  th:href="@{/product/info/{id}(id=${product.getId()})}" th:text="${product.getTitle()}"></a>
+                                   </div>
+                               </div>
+                               <div class="row row-cols-2 id = bl2_bottom">
+                                   <p th:text="'Цена: ' + ${product.getPrice()}"></p>
+                               </div>
+                               <br>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </div>
+   </div>
+   </body>
+<!--///////////////////////////////////////////-->
+<footer id="myfooter"></footer>
+<script th:src="@{/js/index.js}" ></script>
+</html>
+

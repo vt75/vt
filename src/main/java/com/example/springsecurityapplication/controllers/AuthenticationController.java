@@ -46,5 +46,10 @@ public class AuthenticationController {
         personService.register(person);
         return "redirect:/index";
     }
-
+    @Controller
+    public static class ProductController {
+        public String products() {
+            return "product/product";
+        }
+    }
 }
